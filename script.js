@@ -57,7 +57,9 @@ function moveSnake() {
         const head = { x: snake.x + dx, y: snake.y + dy };
         snake.unshift(head);
 
-        if (head.x === foodX && head.y === foodY) {
+        const didEatFood = head.x === foodX && head.y === foodY;
+
+        if (didEatFood) {
             score++;
             generateFood();
         } else {
@@ -71,7 +73,6 @@ function moveSnake() {
         drawGame();
     }
 }
-
 
 function handleKeyPress(event) {
     if (!gameOverFlag) {
