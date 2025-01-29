@@ -18,7 +18,7 @@ function generateFood() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < snake.length; i++) {
-        ctx.fillStyle = (i === 0)? 'green': 'red';
+        ctx.fillStyle = (i === 0) ? 'green' : 'red';
         ctx.fillRect(snake[i].x, snake[i].y, grid, grid);
     }
     ctx.fillStyle = 'red';
@@ -31,7 +31,7 @@ function update() {
         return;
     }
 
-    const head = { x: snake.x, y: snake.y };
+    const head = { x: snake[0].x, y: snake[0].y }; // Corrected line
     switch (direction) {
         case 'up': head.y -= grid; break;
         case 'down': head.y += grid; break;
@@ -68,10 +68,10 @@ function checkCollision(head, array) {
 
 document.addEventListener('keydown', (e) => {
     switch (e.key) {
-        case 'ArrowUp': if (direction!== 'down') direction = 'up'; break;
-        case 'ArrowDown': if (direction!== 'up') direction = 'down'; break;
-        case 'ArrowLeft': if (direction!== 'right') direction = 'left'; break;
-        case 'ArrowRight': if (direction!== 'left') direction = 'right'; break;
+        case 'ArrowUp': if (direction !== 'down') direction = 'up'; break;
+        case 'ArrowDown': if (direction !== 'up') direction = 'down'; break;
+        case 'ArrowLeft': if (direction !== 'right') direction = 'left'; break;
+        case 'ArrowRight': if (direction !== 'left') direction = 'right'; break;
     }
 });
 
