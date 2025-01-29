@@ -24,9 +24,7 @@ function drawGame() {
     ctx.fillStyle = 'red';
     ctx.fillRect(foodX, foodY, snakeSize, snakeSize);
     ctx.fillStyle = 'green';
-    
-    // Corrected loop to draw snake segments
-    for (let i = 0; i < snake.length; i++) { 
+    for (let i = 0; i < snake.length; i++) {
         ctx.fillRect(snake[i].x, snake[i].y, snakeSize, snakeSize);
         ctx.strokeRect(snake[i].x, snake[i].y, snakeSize, snakeSize);
     }
@@ -59,18 +57,21 @@ function moveSnake() {
         const head = { x: snake.x + dx, y: snake.y + dy };
         snake.unshift(head);
 
-        if (!checkCollision()) {
-            if (head.x === foodX && head.y === foodY) {
-                score++;
-                generateFood();
-            } else {
-                snake.pop();
-            }
-
-            drawGame();
+        if (head.x === foodX && head.y === foodY) {
+            score++;
+            generateFood();
+        } else {
+            snake.pop();
         }
+
+        if (checkCollision()) {
+            gameOver();
+        }
+
+        drawGame();
     }
 }
+
 
 function handleKeyPress(event) {
     if (!gameOverFlag) {
